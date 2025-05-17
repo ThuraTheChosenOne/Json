@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>HTTP Request By AJAX -  Chuck Norris</title>
+
+    <style type="text/css">
+
+      body{
+        height: 100vh;
+
+        display: flex;
+        justify-content:center;
+        align-items: center;
+      }
+
+
+      .container{
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 10px;
+        
+
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div id="display"></div>
+      <button type="button" id="btn">Load Data</button>
+    </div>
+
+    <script text="text/JavaScript">
+     
+      
+
+      const getdisplay = document.getElementById('display');
+      const getbtn = document.getElementById('btn');
+
+      getbtn.addEventListener('click',function(){
+        loaddata();
+      });
+
+
+      function loaddata(){
+        const key ="ira_eUVu4ZmVnQxpSXVgnTuYi7YF2z3rlI2HFmTv"
+        const uri=`https://api.ipregistry.co?key=${key}`;
+        const xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.open('GET',uri);// default means yes synchronize
+
+        xmlhttp.onload = function(){
+          let result = xmlhttp.response;
+          // console.log(result);
+
+          result = JSON.parse(result);
+          console.log(result);
+          // console.log(result.ip);
+          // console.log(result.currency['name_native']);
+          // console.log(result.user_agent['device']);
+          let html = `
+          <ul>
+            <li>Externa IP = ${result.ip} </li>
+            <li>Currency = ${result.currency['name_native']} </li>
+            
+            <li>Device = ${result.user_agent['device']['name']} </li>
+            </ul>
+          `;
+          getdisplay.innerHTML = html;
+        }
+        xmlhttp.send();
+        
+      }
+      
+    </script>
+
+  </body>
+
+</html>
+<!-- <li>Device = ${result.user_agent['device']}</li>//in this case it will show obj obj cuz it cant show several objects on display -->
+<!-- 
+IP
+
+Local IP
+(i)dynamic IP
+(ii)Fixed IP / Static IP
+
+
+External IP
+(i)Public IP/ Dynamic IP
+(ii)Fixed IP / Static IP -->

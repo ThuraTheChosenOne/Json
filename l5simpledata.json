@@ -1,0 +1,14 @@
+{
+  "firstname":"Kyaw",
+  "lastname":"Zayar",
+  "age":15,
+  "tax":false,
+  "passport":null,
+  "remake":"Lorem Ipsum is \"simply\" of the prnting and typesetting industry",
+  "holiday":["Saturday","Sunday"],
+  "qualify":[
+    {"subject":"Myanmar","mark":80},
+    {"subject":"English","mark":60},
+    {"subject":"Maths","mark":90}
+  ]
+}
