@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>Jquery Ajex -  Local</title>
+
+
+  </head>
+  <body>
+
+    
+    <script src="./assets/libs/jquery/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script type="text/JavaScript">
+
+        const latitude = "21.953185";
+        const longitude = "96.0922099";
+        const key = "4ac853e862f9d65b21bcb91017c23ed4"
+        const url=`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=4ac853e862f9d65b21bcb91017c23ed4`;
+
+        // //Method 2
+        // const url = './l5simpledata.json';
+
+        $.ajax({
+            method:'GET',
+            url:url,
+            dataType:'json',//text
+            success:(getdata)
+        });
+
+        function getdata(data,status,xhr){
+            console.log(data);
+            console.log(data.weather[0]['main']);
+            console.log(data.wind['speed'])
+            
+        }
+
+
+
+
+
+
+
+
+
+        
+
+   
+   
+
+    </script>
+
+  </body>
+
+</html>

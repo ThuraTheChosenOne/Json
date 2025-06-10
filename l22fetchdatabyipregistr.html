@@ -50,31 +50,23 @@
 
       function loaddata(){
         const key ="ira_eUVu4ZmVnQxpSXVgnTuYi7YF2z3rlI2HFmTv"
-        const uri=`https://api.ipregistry.co?key=${key}`;
-        const xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.open('GET',uri);// default means yes synchronize
-
-        xmlhttp.onload = function(){
-          let result = xmlhttp.response;
-          // console.log(result);
-
-          result = JSON.parse(result);
-          console.log(result);
-          // console.log(result.ip);
-          // console.log(result.currency['name_native']);
-          // console.log(result.user_agent['device']);
-          let html = `
-          <ul>
-            <li>External IP = ${result.ip} </li>
-            <li>Currency = ${result.currency['name_native']} </li>
+        const url=`https://api.ipregistry.co?key=${key}`;
+        fetch(url)
+        .then(response=>response.json())
+        .then(data=>{
+            let html = `
+                            <ul>
+                                <li>External IP = ${data.ip} </li>
+                                <li>Currency = ${data.currency['name_native']} </li>
+                                
+                                <li>Device = ${data.user_agent['device']['name']} </li>
+                                </ul>
+                            `;
+                            getdisplay.innerHTML = html;      
+                
             
-            <li>Device = ${result.user_agent['device']['name']} </li>
-            </ul>
-          `;
-          getdisplay.innerHTML = html;
-        }
-        xmlhttp.send();
+        })
+        .catch(err=>console.log(err))
         
       }
       

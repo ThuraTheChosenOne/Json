@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch -  Dummy json</title>
+    <style type="text/css">
+
+      body{
+        height: 100vh;
+
+        display: flex;
+        justify-content:center;
+        align-items: center;
+      }
+
+
+      .container{
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 10px;
+        
+
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div id="display"></div>
+      <button type="button" id="btn">Load Data</button>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script text="text/JavaScript">
+     
+      
+
+      const getdisplay = document.getElementById('display');
+      const getbtn = document.getElementById('btn');
+
+      getbtn.addEventListener('click',function(){
+        loaddata();
+      });
+
+
+      function loaddata(){
+
+        const url=`https://dummyjson.com/products`;
+        axios.get(url).then((response)=>{
+            console.log(response.data.products);
+
+            response.data.products.forEach(function(product){
+                // let html = `<h3>${product.id}</h3>
+                // <p>${product.title}</p>`;
+
+                // getdisplay.innerHTML = html;
+                console.log(product.id,product.title,product.price);
+            })
+
+           
+        }).catch(err=>{
+            console.log(err);
+        });
+        
+      }
+      
+    </script>
+  </body>
+</html>
